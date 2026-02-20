@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.product .btn{
+    transition: all .5s ;
+    transform: translateY(100%);
+    opacity: 0;
+    
+
+}
+
+.product:hover .btn{
+    opacity: 1;
+    transform: translateY(0%);
+    
+}
