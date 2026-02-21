@@ -77,7 +77,6 @@ export default function Cart() {
     return <FullScreenLoader />;
   }
 
-  // هنشيل شرط الـ !cartDetails عشان ما يعرضش "فاضية" والبيانات لسه جاية في الطريق
   if (!isloading && cartDetails && cartDetails?.products?.length === 0) {
     return (
       <div className="container mx-auto px-4 mt-12 text-center py-20 bg-gray-50 rounded-sm">

@@ -128,20 +128,24 @@ export default function Register() {
               ) : null}
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex flex-col md:flex-row items-center md:justify-between gap-6 mt-4">
               <NavLink
                 to="/forget-password"
-                className="text-xl font-semibold hover:text-green-500 transition duration-500"
+                className="text-lg md:text-xl font-semibold hover:text-green-500 transition duration-500 text-center md:text-start"
               >
                 forget your password ?
               </NavLink>
 
               <button
                 type="submit"
-                className={` border-2 border-gray-500 font-light rounded-lg text-lg w-full sm:w-auto px-7 py-3 ${formik.isValid && formik.dirty ? "bg-green-600 text-slate-100" : "bg-white text-slate-400"} `}
+                className={`border-2 border-gray-500 font-light rounded-lg text-lg w-full md:w-auto px-10 py-3 transition-all duration-300 ${
+                  formik.isValid && formik.dirty
+                    ? "bg-green-600 text-slate-100 border-green-600"
+                    : "bg-white text-slate-400 cursor-not-allowed"
+                }`}
                 disabled={!(formik.isValid && formik.dirty)}
               >
-                Register now
+                Login now
               </button>
             </div>
           </form>
