@@ -1,15 +1,14 @@
 import axios from "axios";
 import { createContext, useState } from "react";
-import { jwtDecode } from "jwt-decode"
+import { jwtDecode } from "jwt-decode";
 
 export let CartContext = createContext();
 
 export default function CartContextProvider(props) {
+  const [cartId, setCartId] = useState(null);
+  const [numbersOfCartItems, setNumbersOfCartItems] = useState("0");
 
-  const [cartId, setCartId] = useState(null)
-  const [numbersOfCartItems, setNumbersOfCartItems] = useState('0')
-
-  const [cartOwner, setCartOwner] = useState('')
+  const [cartOwner, setCartOwner] = useState("");
 
   let headers = {
     token: localStorage.getItem("user Token"),
@@ -18,25 +17,27 @@ export default function CartContextProvider(props) {
   async function addProductToCart(productId) {
     return await axios
       .post(
-        `https://ecommerce.routemisr.com/api/v2/cart`,
+        `https://ecommerce.routemisr.com/api/v1/cart`,
         { productId: productId },
-        {headers:{token: localStorage.getItem("user Token"),} },
+        { headers: { token: localStorage.getItem("user Token") } },
       )
       .then((res) => {
-        setNumbersOfCartItems(res.data.numOfCartItems)
-        return res
+        setNumbersOfCartItems(res.data.numOfCartItems);
+        return res;
       })
       .catch((err) => err);
   }
 
   async function getLoggedUserCart() {
     return await axios
-      .get('https:ecommerce.routemisr.com/api/v2/cart', { headers:{token: localStorage.getItem("user Token"),} })
+      .get("https:ecommerce.routemisr.com/api/v1/cart", {
+        headers: { token: localStorage.getItem("user Token") },
+      })
       .then((res) => {
         const token = localStorage.getItem("user Token");
         if (token) {
           const decoded = jwtDecode(token);
-          setCartOwner(decoded.id); 
+          setCartOwner(decoded.id);
           console.log("User ID from Token:", decoded.id);
         }
 
@@ -49,12 +50,12 @@ export default function CartContextProvider(props) {
 
   async function deleteSpecificItem(productId) {
     return await axios
-      .delete(`https://ecommerce.routemisr.com/api/v2/cart/${productId}`, {
-        headers:{token: localStorage.getItem("user Token"),}
+      .delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`, {
+        headers: { token: localStorage.getItem("user Token") },
       })
-      .then((res) =>{
-        setNumbersOfCartItems(res.data.numOfCartItems)
-        return res
+      .then((res) => {
+        setNumbersOfCartItems(res.data.numOfCartItems);
+        return res;
       })
       .catch((err) => err);
   }
@@ -62,9 +63,9 @@ export default function CartContextProvider(props) {
   async function updateCartProduct(productId, newCount) {
     return await axios
       .put(
-        `https://ecommerce.routemisr.com/api/v2/cart/${productId}`,
+        `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
         { count: newCount },
-        { headers:{token: localStorage.getItem("user Token"),} },
+        { headers: { token: localStorage.getItem("user Token") } },
       )
       .then((res) => res)
       .catch((err) => err);
@@ -72,7 +73,9 @@ export default function CartContextProvider(props) {
 
   async function clearUserCart() {
     return await axios
-      .delete(`https://ecommerce.routemisr.com/api/v2/cart`, { headers:{token: localStorage.getItem("user Token"),} })
+      .delete(`https://ecommerce.routemisr.com/api/v1/cart`, {
+        headers: { token: localStorage.getItem("user Token") },
+      })
       .then((res) => res)
       .catch((err) => err);
   }
@@ -88,7 +91,7 @@ export default function CartContextProvider(props) {
         setNumbersOfCartItems,
         numbersOfCartItems,
         cartId,
-        cartOwner
+        cartOwner,
       }}
     >
       {props.children}
