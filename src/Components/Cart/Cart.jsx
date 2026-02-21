@@ -22,16 +22,16 @@ export default function Cart() {
     try {
       setIsloading(true);
       let res = await getLoggedUserCart();
-      console.log(res.data.data);
-
-      if (res.data.status == "success") {
+      
+      // تأكدي إننا بنقرأ البيانات بأمان باستخدام علامة الاستفهام ?
+      if (res?.data?.status === "success") {
         setNumbersOfCartItems(res.data.numOfCartItems);
-        console.log(res.data.data);
-
-        setCartDetails(res.data.data);
+        setCartDetails(res.data.data); // هنا البيانات هتتحط صح
       }
     } catch (err) {
-      console.log(err);
+      console.log("Error fetching cart:", err);
+      // لو حصل خطأ، خلي العربة فاضية بدل ما يفضل يحمل
+      setCartDetails({ products: [] });
     } finally {
       setIsloading(false);
     }
@@ -108,7 +108,7 @@ export default function Cart() {
             <p className="text-gray-800 font-bold">
               total number of items:{" "}
               <span className="text-green-600">
-                {cartDetails?.products.length || 0}
+                {cartDetails?.products?.length || 0}
               </span>
             </p>
           </div>
