@@ -12,34 +12,35 @@ export default function HomeSlider() {
     return <FullScreenLoader />;
   }
 
-  var settings = {
-    dots: true,
+  const settings = {
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 6, // ده للشاشات الكبيرة جداً
+    slidesToShow: 6,
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
     responsive: [
       {
-        breakpoint: 1200, // شاشات اللابتوب
-        settings: { slidesToShow: 4, slidesToScroll: 1 },
+        breakpoint: 1024,
+        settings: { slidesToShow: 4 },
       },
       {
-        breakpoint: 992, // التابلت
-        settings: { slidesToShow: 3, slidesToScroll: 1 },
+        breakpoint: 768,
+        settings: { slidesToShow: 3 },
       },
       {
-        breakpoint: 600, // الموبايلات الكبيرة
-        settings: { slidesToShow: 2, slidesToScroll: 1 },
+        breakpoint: 600,
+        settings: { slidesToShow: 2 },
       },
       {
-        breakpoint: 480, // الموبايلات الصغيرة
+        breakpoint: 400, 
         settings: {
-          slidesToShow: 2, // أهم سطر: يظهر 2 بس
+          slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false,
+          centerMode: true,
+          centerPadding: "20px", 
         },
       },
     ],
@@ -50,17 +51,19 @@ export default function HomeSlider() {
       <div className="slider-container mb-10 mt-5 container mx-auto px-4">
         <Slider {...settings}>
           {data?.map((category) => (
-            <div className="px-1 md:px-2" key={category._id}>
-              <div className="overflow-hidden rounded-lg">
+            <div className="px-2 focus:outline-none" key={category._id}>
+              <div className="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 mx-1">
                 <img
                   src={category.image}
-                  className="w-full aspect-square object-contain rounded-full bg-gray-100 p-2"
+                  className="w-full h-[250px] object-contain bg-gray-50"
                   alt={category.name}
                 />
+                <div className="p-3 bg-white">
+                  <h2 className="text-center font-bold text-base text-gray-800 uppercase">
+                    {category.name}
+                  </h2>
+                </div>
               </div>
-              <h2 className="text-center mt-2 font-semibold text-sm md:text-base text-gray-700">
-                {category.name}
-              </h2>
             </div>
           ))}
         </Slider>
