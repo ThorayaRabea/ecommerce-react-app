@@ -15,24 +15,26 @@ export default function HomeSlider() {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 6, // للشاشات الكبيرة
+    slidesToShow: 1,
     autoplay: true,
     arrows: false,
     responsive: [
+      {
+        breakpoint: 5000,
+        settings: {
+          slidesToShow: 6,
+        },
+      },
       {
         breakpoint: 1024,
         settings: { slidesToShow: 4 },
       },
       {
-        breakpoint: 768,
-        settings: { slidesToShow: 3 },
-      },
-      {
-        breakpoint: 600, // أي حاجة أصغر من 600 (زي موبايلك)
+        breakpoint: 600,
         settings: {
-          slidesToShow: 1, // صورة واحدة بس عشان تبان عملاقة
+          slidesToShow: 1,
           centerMode: true,
-          centerPadding: "30px", // تظهر حواف الصور اللي بعدها
+          centerPadding: "20px",
         },
       },
     ],
