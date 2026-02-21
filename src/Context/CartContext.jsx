@@ -74,7 +74,7 @@ export default function CartContextProvider(props) {
   async function clearUserCart() {
     return await axios
       .delete(`https://ecommerce.routemisr.com/api/v1/cart`, {
-        headers: { token: localStorage.getItem("user Token") },
+        headers: { token:localStorage.getItem("user Token") },
       })
       .then((res) => res)
       .catch((err) => err);

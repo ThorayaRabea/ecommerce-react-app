@@ -86,7 +86,7 @@ export default function Cart() {
       </div>
     );
   }
-  
+
   return (
     <div className="container mx-auto px-4 mt-12">
       <div className="bg-gray-50 p-6 md:p-10 rounded-sm">
@@ -113,8 +113,10 @@ export default function Cart() {
           </div>
         </div>
 
+
+
         <div className="space-y-6">
-          {cartDetails?.products?.map((item) => (
+          {(cartDetails?.products || cartDetails?.data?.products)?.map((item) => (
             <div
               key={item.product.id}
               className="flex flex-col md:flex-row items-center border-b border-gray-200 pb-6 gap-6"
