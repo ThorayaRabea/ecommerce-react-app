@@ -50,7 +50,8 @@ export default function HomeSlider() {
               <div className="overflow-hidden rounded-lg">
                 <img
                   src={category.image}
-                  className="w-full object-cover h-[150px] md:h-[250px]"
+                 
+                  className="w-full aspect-square object-cover rounded-lg"
                   alt={category.name}
                 />
               </div>
