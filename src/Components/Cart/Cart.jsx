@@ -53,7 +53,7 @@ export default function Cart() {
     let res = await clearUserCart();
     console.log(res.data);
     setNumbersOfCartItems(0);
-    setCartDetails(res.data.data);
+    setCartDetails({ products: [] });
     setIsloading(false);
   }
 
@@ -123,7 +123,7 @@ export default function Cart() {
             >
               <div className="w-full md:w-1/6">
                 <img
-                  src={item.product.imageCover}s
+                  src={item.product.imageCover}
                   className="w-full"
                   alt={item.product.title}
                 />

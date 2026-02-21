@@ -30,7 +30,7 @@ export default function CartContextProvider(props) {
 
   async function getLoggedUserCart() {
     return await axios
-      .get("https:ecommerce.routemisr.com/api/v1/cart", {
+      .get("https://ecommerce.routemisr.com/api/v1/cart", {
         headers: { token: localStorage.getItem("user Token") },
       })
       .then((res) => {
