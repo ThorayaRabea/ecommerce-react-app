@@ -17,23 +17,27 @@ export default function HomeSlider() {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 6,
+    slidesToShow: 6, // ده للشاشات الكبيرة جداً
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200, // شاشات اللابتوب
         settings: { slidesToShow: 4, slidesToScroll: 1 },
       },
       {
-        breakpoint: 768,
+        breakpoint: 992, // التابلت
         settings: { slidesToShow: 3, slidesToScroll: 1 },
       },
       {
-        breakpoint: 480,
+        breakpoint: 600, // الموبايلات الكبيرة
+        settings: { slidesToShow: 2, slidesToScroll: 1 },
+      },
+      {
+        breakpoint: 480, // الموبايلات الصغيرة
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 2, // أهم سطر: يظهر 2 بس
           slidesToScroll: 1,
           dots: false,
         },
@@ -50,8 +54,7 @@ export default function HomeSlider() {
               <div className="overflow-hidden rounded-lg">
                 <img
                   src={category.image}
-                 
-                  className="w-full aspect-square object-cover rounded-lg"
+                  className="w-full aspect-square object-contain rounded-full bg-gray-100 p-2"
                   alt={category.name}
                 />
               </div>
