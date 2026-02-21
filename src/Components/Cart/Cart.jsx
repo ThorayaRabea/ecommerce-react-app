@@ -116,63 +116,59 @@ export default function Cart() {
         </div>
 
         <div className="space-y-6">
-          {(cartDetails?.products || cartDetails?.data?.products)?.map(
-            (item) => (
-              <div
-                key={item.product.id}
-                className="flex flex-col md:flex-row items-center border-b border-gray-200 pb-6 gap-6"
-              >
-                <div className="w-full md:w-1/6">
-                  <img
-                    src={item.product.imageCover}
-                    className="w-full"
-                    alt={item.product.title}
-                  />
-                </div>
-
-                <div className="w-full md:w-4/6 flex flex-col justify-center text-center md:text-left">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
-                    {item.product.title.split(" ").slice(0, 3).join(" ")}
-                  </h3>
-                  <p className="text-gray-700 font-bold mb-3">
-                    {item.price} EGP
-                  </p>
-                  <button
-                    className="text-red-500 flex items-center justify-center md:justify-start gap-1 hover:text-red-700 transition-all font-medium"
-                    onClick={() => deleteProduct(item.product.id)}
-                  >
-                    <i className="fa-solid fa-trash-can text-sm"></i> Remove
-                  </button>
-                </div>
-
-                <div className="w-full md:w-1/6 flex items-center justify-center md:justify-end gap-4">
-                  <button
-                    onClick={() =>
-                      upadateProduct(item.product.id, item.count + 1)
-                    }
-                    className="border border-green-500 rounded-md h-9 w-9 flex items-center justify-center text-xl text-gray-700 hover:bg-green-500 hover:text-white transition-all"
-                  >
-                    +
-                  </button>
-                  <span className="text-xl font-medium w-6 text-center">
-                    {currentId == item.product.id ? (
-                      <i className="fas fa-spinner fa-spin text-green-600 text-xl"></i>
-                    ) : (
-                      item.count
-                    )}
-                  </span>
-                  <button
-                    onClick={() =>
-                      upadateProduct(item.product.id, item.count - 1)
-                    }
-                    className="border border-green-500 rounded-md h-9 w-9 flex items-center justify-center text-xl text-gray-700 hover:bg-green-500 hover:text-white transition-all"
-                  >
-                    -
-                  </button>
-                </div>
+          {cartDetails?.products?.map((item) => (
+            <div
+              key={item.product.id}
+              className="flex flex-col md:flex-row items-center border-b border-gray-200 pb-6 gap-6"
+            >
+              <div className="w-full md:w-1/6">
+                <img
+                  src={item.product.imageCover}s
+                  className="w-full"
+                  alt={item.product.title}
+                />
               </div>
-            ),
-          )}
+
+              <div className="w-full md:w-4/6 flex flex-col justify-center text-center md:text-left">
+                <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                  {item.product.title.split(" ").slice(0, 3).join(" ")}
+                </h3>
+                <p className="text-gray-700 font-bold mb-3">{item.price} EGP</p>
+                <button
+                  className="text-red-500 flex items-center justify-center md:justify-start gap-1 hover:text-red-700 transition-all font-medium"
+                  onClick={() => deleteProduct(item.product.id)}
+                >
+                  <i className="fa-solid fa-trash-can text-sm"></i> Remove
+                </button>
+              </div>
+
+              <div className="w-full md:w-1/6 flex items-center justify-center md:justify-end gap-4">
+                <button
+                  onClick={() =>
+                    upadateProduct(item.product.id, item.count + 1)
+                  }
+                  className="border border-green-500 rounded-md h-9 w-9 flex items-center justify-center text-xl text-gray-700 hover:bg-green-500 hover:text-white transition-all"
+                >
+                  +
+                </button>
+                <span className="text-xl font-medium w-6 text-center">
+                  {currentId == item.product.id ? (
+                    <i className="fas fa-spinner fa-spin text-green-600 text-xl"></i>
+                  ) : (
+                    item.count
+                  )}
+                </span>
+                <button
+                  onClick={() =>
+                    upadateProduct(item.product.id, item.count - 1)
+                  }
+                  className="border border-green-500 rounded-md h-9 w-9 flex items-center justify-center text-xl text-gray-700 hover:bg-green-500 hover:text-white transition-all"
+                >
+                  -
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="flex justify-center mt-12">
