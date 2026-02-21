@@ -77,17 +77,16 @@ export default function Cart() {
     return <FullScreenLoader />;
   }
 
-  if (!isloading && (!cartDetails || cartDetails?.products?.length === 0)) {
+  // هنشيل شرط الـ !cartDetails عشان ما يعرضش "فاضية" والبيانات لسه جاية في الطريق
+  if (!isloading && cartDetails && cartDetails?.products?.length === 0) {
     return (
       <div className="container mx-auto px-4 mt-12 text-center py-20 bg-gray-50 rounded-sm">
         <h2 className="text-3xl font-bold text-gray-800">Your Cart is Empty</h2>
-        <p className="text-gray-500 my-4">
-          Add some products to see them here!
-        </p>
+        <p className="text-gray-500 my-4">Add some products to see them here!</p>
       </div>
     );
   }
-
+  
   return (
     <div className="container mx-auto px-4 mt-12">
       <div className="bg-gray-50 p-6 md:p-10 rounded-sm">
